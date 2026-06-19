@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Nayuning ❤️</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ffd1dc,#ffe4e1);
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    text-align:center;
+    max-width:800px;
+    padding:20px;
+}
+
+h1{
+    color:#e91e63;
+}
+
+button{
+    padding:15px 35px;
+    font-size:20px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    background:#ff4081;
+    color:white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+#pesan{
+    margin-top:30px;
+    font-size:22px;
+    color:#c2185b;
+    white-space:pre-wrap;
+    min-height:250px;
+    font-weight:bold;
+}
+
+.heart{
+    position:absolute;
+    color:red;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="musik" loop>
+    <source src="lagu.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+    <h1>🌹 Pesan Spesial Untukmu 🌹</h1>
+
+    <button onclick="mulaiPesan()">
+        💌 Buka Pesan
+    </button>
+
+    <div id="pesan"></div>
+
+</div>
+
+<script>
+
+const teks = `💖 SELAMAT PAGI SAYANGKU CINTAKUU 💖
+
+NAYUNING RO'IDA HASNA 🌹
+
+Semoga harimu menyenangkan,
+selalu diberikan kesehatan,
+dilancarkan segala urusan,
+dan dipenuhi kebahagiaan.
+
+Jangan lupa sarapan ya 😊
+
+Tetap semangat menjalani hari,
+dan jangan lupa tersenyum.
+
+❤️ HAVE A NICE DAY ❤️
+
+Dari seseorang yang selalu
+mendoakan yang terbaik untukmu 🌷`;
+
+function mulaiPesan(){
+
+    console.log("Tombol diklik");
+
+    const musik = document.getElementById("musik");
+
+    console.log(musik);
+
+    musik.play()
+    .then(() => console.log("Musik berhasil diputar"))
+    .catch(err => console.error("ERROR AUDIO:", err));
+
+    document.querySelector("button").style.display = "none";
+
+    let i = 0;
+    let target = document.getElementById("pesan");
+
+    let interval = setInterval(function(){
+
+        target.innerHTML += teks.charAt(i);
+
+        i++;
+
+        if(i >= teks.length){
+            clearInterval(interval);
+        }
+
+    },80);
+}
+
+function buatHati(){
+
+    const hati = document.createElement("div");
+
+    hati.className = "heart";
+    hati.innerHTML = "❤️";
+
+    hati.style.left = Math.random()*100 + "vw";
+    hati.style.fontSize = (20 + Math.random()*30) + "px";
+
+    document.body.appendChild(hati);
+
+    setTimeout(function(){
+        hati.remove();
+    },8000);
+}
+
+setInterval(buatHati,500);
+
+</script>
+
+</body>
